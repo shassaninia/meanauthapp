@@ -9,9 +9,16 @@ const app = express();
 
 const port = 3000;
 
+//cors middleware
 //Use cors so we can call our api from a differnt domain.
 app.use(cors());
 
+//bodyParser middleware
+//parses incoming request bodies, for example, when you submit a form, you
+//can intercept the data
+app.use(bodyParser.json)
+
+//Index route
 app.get('/', (req,res) => {
     res.send('Invalid Endpoint');
 } );
