@@ -9,6 +9,9 @@ const app = express();
 
 const port = 3000;
 
+//Use cors so we can call our api from a differnt domain.
+app.use(cors());
+
 app.get('/', (req,res) => {
     res.send('Invalid Endpoint');
 } );
