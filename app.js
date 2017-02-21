@@ -36,6 +36,10 @@ app.use(express.static(path.join(__dirname,'public')));
 //can intercept the data
 app.use(bodyParser.json())
 
+//Passport middleware (http://passportjs.org/)
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/users',users);
 
 //Index route
