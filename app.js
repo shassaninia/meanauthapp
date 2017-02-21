@@ -15,6 +15,9 @@ const port = 3000;
 //Use cors so we can call our api from a differnt domain.
 app.use(cors());
 
+//Set static folder
+//Our client side static content will be served out of the public folder
+app.use(express.static(path.join(__dirname,'public')));
 //bodyParser middleware
 //parses incoming request bodies, for example, when you submit a form, you
 //can intercept the data
