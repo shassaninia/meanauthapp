@@ -42,4 +42,11 @@ module.exports.addUser = function(newUser,callback){
                 newUser.save(callback);
             })
     })
+};
+
+module.exports.comparePassword = function(candidatePassword, hash,callback){
+    bcrypt.compare(candidatePassword,hash,(error,isMatch)=>{
+            if(error) throw error;
+            callback(null,isMatch);
+    });
 }
