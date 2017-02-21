@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const users = require('./routes/users');
+
 const port = 3000;
 
 //cors middleware
@@ -16,7 +18,9 @@ app.use(cors());
 //bodyParser middleware
 //parses incoming request bodies, for example, when you submit a form, you
 //can intercept the data
-app.use(bodyParser.json)
+app.use(bodyParser.json())
+
+app.use('/users',users);
 
 //Index route
 app.get('/', (req,res) => {
