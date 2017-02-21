@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
     name:{
         type:String
     },
-    emai:{
+    email:{
         type:String,
         required:true
     },
@@ -31,4 +31,15 @@ module.exports.getUserById = function(id, callback){
 module.exports.getUserByUsername = function(username, callback){
     const query = {username:username};
     User.findOne(query,callback);
+}
+
+module.exports.addUser = function(newUser,callback){
+    //Hash password
+    bcrypt.genSalt(10, (error,salt) => {
+            bcrypt.hash(newUser.password,salt,(error, hash)=>{
+                if(error) throw error;
+                newUser.password = hash;
+                newUser.save(callback);
+            })
+    })
 }
