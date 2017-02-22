@@ -30,6 +30,16 @@ export class AuthService {
                .map(response =>response.json());
   }
 
+  getProfile(){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization',this.authToken);
+    headers.append('content-type','application/json');
+
+    return this.http.get('http://localhost:3000/users/profile',{headers:headers})
+               .map(response =>response.json());
+  }
+
   storeUserData(token, user){
     //passport jwt will automatically look for id_token by default
     localStorage.setItem('id_token',token);
@@ -39,6 +49,12 @@ export class AuthService {
 
     this.authToken = token;
     this.user = user;
+  }
+
+  loadToken(){
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+
   }
 
   logout(){
